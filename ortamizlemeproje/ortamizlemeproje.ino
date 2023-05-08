@@ -16,7 +16,7 @@ byte mac[] = { 0x90, 0xA2, 0xDA, 0x00, 0x59, 0x67 };
 IPAddress ip( 192, 168, 1, 3 );    
 IPAddress gateway( 192, 168, 1, 1 );
 IPAddress subnet( 255, 255, 252, 0 );
-char server[] = "89.19.2.243"; //SMTP Mail Server
+char server[] = "mailserverip"; //SMTP Mail Server
 int port = 587;//SMTP PORT
 EthernetClient client;
 //--------------------------------
@@ -204,24 +204,24 @@ byte sendEmail()
  
   Serial.println(F("Sending User"));
 // Change to your base64 encoded user
-  client.println("c2lzdGVtQGFudGlra2FwaS5jb20udHI=");
+  client.println("mail base64 user");
  
   if(!eRcv()) return 0;
  
   Serial.println(F("Sending Password"));
 // change to your base64 encoded password
-  client.println("S1VhbnRpayEwMjEu");
+  client.println("mailbase64 encoder password");
  
   if(!eRcv()) return 0;
  
 // change to your email address (sender)
   Serial.println(F("Sending From"));
-  client.println("MAIL From: <sistem@antikkapi.com.tr>");
+  client.println("MAIL From: <gönderen mail adresi>");
   if(!eRcv()) return 0;
  
 // change to recipient address
   Serial.println(F("Sending To"));
-  client.println("RCPT To: <bilgiislem@antikkapi.com.tr>");
+  client.println("RCPT To: <kime gönderilecek mail adresi>");
   if(!eRcv()) return 0;
  
   Serial.println(F("Sending DATA"));
@@ -231,10 +231,10 @@ byte sendEmail()
   Serial.println(F("Sending email"));
 
 // change to recipient address
-  client.println("To: BILGIISLEM <bilgiislem@antikkapi.com.tr>");
+  client.println("To: BILGIISLEM <kime mail adresi>");
  
 // change to your address
-  client.println("From: ANTIKKAPI OTS <sistem@antikkapi.com.tr>");
+  client.println("From: ANTIKKAPI OTS <gönderen mail adresi>");
  
   client.println("Subject: SISTEM ODASI UYARI\r\n");
 
